@@ -6,13 +6,13 @@ const SMTP_SERVER_USERNAME = process.env.SMTP_SERVER_USERNAME;
 const SMTP_SERVER_PASSWORD = process.env.SMTP_SERVER_PASSWORD;
 // const SITE_MAIL_RECIEVER = process.env.SITE_MAIL_RECIEVER;
 const transporter = nodemailer.createTransport({
-    host: SMTP_SERVER_HOST || "smtp.gmail.com",
-    port: 587,
-    secure: false, // In Germany, port 587 with secure set to false is commonly used for STARTTLS
-    auth: {
-        user: SMTP_SERVER_USERNAME,
-        pass: SMTP_SERVER_PASSWORD,
-    },
+  host: SMTP_SERVER_HOST || "smtp.gmail.com",
+  port: 465,
+  secure: true, // In Germany, port 587 with secure set to false is commonly used for STARTTLS
+  auth: {
+    user: SMTP_SERVER_USERNAME,
+    pass: SMTP_SERVER_PASSWORD,
+  },
 });
 
 export async function sendMail({
@@ -28,6 +28,7 @@ export async function sendMail({
   text: string;
   html?: string;
 }) {
+  console.log("ENV:", SMTP_SERVER_HOST, SMTP_SERVER_USERNAME);
   try {
     // const isVerified =
     await transporter.verify();
