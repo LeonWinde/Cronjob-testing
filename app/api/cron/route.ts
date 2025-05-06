@@ -2,6 +2,7 @@ import { sendMail } from "@/lib/send-mail";
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  console.log("Sending mail...")
   sendMail({
     email: "leon.winde@gmail.com",
     subject: "testing",
